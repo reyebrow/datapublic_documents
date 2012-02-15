@@ -168,11 +168,6 @@ function datapublic_documents_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['edit_node']['text'] = 'Edit Document';
-  /* Sort criterion: Content statistics: Total views */
-  $handler->display->display_options['sorts']['totalcount']['id'] = 'totalcount';
-  $handler->display->display_options['sorts']['totalcount']['table'] = 'node_counter';
-  $handler->display->display_options['sorts']['totalcount']['field'] = 'totalcount';
-  $handler->display->display_options['sorts']['totalcount']['order'] = 'DESC';
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
@@ -190,6 +185,14 @@ function datapublic_documents_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'document' => 'document',
+  );
+  /* Filter criterion: Content translation: Language */
+  $handler->display->display_options['filters']['language']['id'] = 'language';
+  $handler->display->display_options['filters']['language']['table'] = 'node';
+  $handler->display->display_options['filters']['language']['field'] = 'language';
+  $handler->display->display_options['filters']['language']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+    '***DEFAULT_LANGUAGE***' => '***DEFAULT_LANGUAGE***',
   );
 
   /* Display: Block: Table */
@@ -209,7 +212,6 @@ function datapublic_documents_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['group_rendered'] = 0;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -313,6 +315,29 @@ function datapublic_documents_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['edit_node']['text'] = 'Edit Document';
   $handler->display->display_options['block_description'] = 'Documents: List Block';
+  $translatables['documents'] = array(
+    t('Master'),
+    t('More documents'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('Title'),
+    t('Last Updated'),
+    t('Download'),
+    t('[field_document_attachment]'),
+    t('Edit Document'),
+    t('Block: Table'),
+    t('more'),
+    t('Documents: Table Block'),
+    t('Block:list'),
+    t('Documents'),
+    t('Documents: List Block'),
+  );
   $export['documents'] = $view;
 
   return $export;
