@@ -9,57 +9,52 @@
 
 
 /**
- * Implements theme_file_link().
+ * Implements template_preprocess_node().
  *
- * Specifically, rewrites it to return the markup and content just so.
+ * We build the download link parts here--again!--because it doesn't seem possible
+ * to override theme_file_link() from here in a way that themes can ALSO override
+ * (in other words, doing it using hook_theme() doesn't work, and the only other
+ * alternative is to use hook_theme_registry_alter() which themes can't alter--at
+ * least not without implementing their own version of theme registry alter).
  */
-function datapublic_documents_file_link($variables) {
-  $file = $variables['file'];
-  $icon_directory = $variables['icon_directory'];
-
-  $url = file_create_url($file->uri);
-  $icon = theme('file_icon', array('file' => $file, 'icon_directory' => $icon_directory));
-
-  // Set options as per anchor format described at
-  // http://microformats.org/wiki/file-format-examples
-  $options = array(
-    'attributes' => array(
-      'type' => $file->filemime . '; length=' . $file->filesize,
-    ),
-  );
-
-  // Figure out how the output will look:
-  $field_pattern = '<div class="row"><div class="nice large radius white button">%s<br />%s %s</div></div>';
-  // Get the variables for sprintf:
-  $link = l(t('Download Now'), $url, $options);
-  $file_size = format_size($file->filesize);
-  $file_extension = strtoupper(pathinfo($url, PATHINFO_EXTENSION));
-  // Return the markup:
-  return sprintf($field_pattern, $link, $file_size, $file_extension);
-} // datapublic_documents_file_link()
+function datapublic_documents_preprocess_node(&$variables) {
+  if (isset($variables['field_document_attachment'])) {
+    // Build the download url:
+    $download_link_url = file_create_url($variables['field_document_attachment'][0]['uri']);
+    // Set options as per anchor format described at
+    // http://microformats.org/wiki/file-format-examples
+    $download_link_options = array(
+      'attributes' => array(
+        'type' => $variables['field_document_attachment'][0]['filemime'] . '; length=' . $variables['field_document_attachment'][0]['filesize'],
+      ),
+    );
+    // Make the download link:
+    $variables['document_download_link'] = l(t('Download Now'), $download_link_url, $download_link_options);
+    // Make the file size available:
+    $variables['document_filesize'] = format_size($variables['field_document_attachment'][0]['filesize']);
+    // Provide a separate variable for file type too:
+    $variables['document_filetype'] = strtoupper(pathinfo($download_link_url, PATHINFO_EXTENSION));
+  }
+} // datapublic_documents_preprocess_node()
 
 
 /**
  * Implements of hook_theme().
  *
- * @todo
- *  --  it seems that, in some circumstances, $existing['node'] doesn't exist
- *      when this function runs (module weight? phase of the moon?), so
- *      ensure that it's an array, and that it gets the right properties, OR
- *      find out how to make damned sure node is present before this!
- *  --  confirm that theme_file_link() will override this if used in themes
+ * @note:
+ *
+ * it seems that, in some circumstances, $existing['node'] doesn't exist
+ * when this function runs (module weight? phase of the moon?), but the
+ * documents template still works (presumably since node arrives and the
+ * proper hierarchy is established at some point). We check for it just to
+ * prevent php warnings and Drupal message reporting these.
  */
-function datapublic_documents_theme($existing) {
+function datapublic_documents_theme($existing, $type, $theme, $path) {
   // Provide template for document content type:
-  $document = $existing['node'] || array();
-  $document['path'] = drupal_get_path('module', 'datapublic_documents') . '/theme';
+  $document = isset($existing['node']) ? $existing['node'] : array();
+  $document['path'] = $path . '/theme';
   $document['template'] = 'node--document';
-  // Override theming function for file link--this could also be done using
-  // hook_theme_registry_alter():
-  $file_link = $existing['file_link'];
-  $file_link['function'] = 'datapublic_documents_file_link';
   return array(
     'node__document' => $document,
-    'file_link' => $file_link,
   );
 } // datapublic_documents_theme()

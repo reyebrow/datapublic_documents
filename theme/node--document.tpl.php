@@ -92,10 +92,19 @@
   <div class="submitted"><?php print t('Last Updated @date', array('@date' => format_date($node->changed))); ?></div>
 
   <div class="content"<?php print $content_attributes; ?>>
+    <div class="row">
+      <div class="nice large radius white button">
+        <?php print $document_download_link; ?>
+        <br />
+        <?php print $document_filesize; ?> <?php print $document_filetype; ?>
+      </div>
+    </div>
     <?php
-      // We hide the comments and links now so that we can render them later.
+      // We hide the comments and links now so that we can render them later, and
+      // the document attachent because we've just output that information above.
       hide($content['comments']);
       hide($content['links']);
+      hide($content['field_document_attachment']);
       print render($content);
     ?>
   </div>
