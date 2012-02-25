@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @file
  * Provides theming resources to be used in the Document content type.
  *
  * @todo

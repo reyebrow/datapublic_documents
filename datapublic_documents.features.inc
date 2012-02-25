@@ -36,7 +36,7 @@ function datapublic_documents_node_info() {
     'document' => array(
       'name' => t('Document'),
       'base' => 'node_content',
-      'description' => t('A document with information related to an attached file such as a PDF or a DOC.			'),
+      'description' => t('A document with information related to an attached file such as a PDF or a DOC.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
