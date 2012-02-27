@@ -12,7 +12,7 @@ function datapublic_documents_views_default_views() {
 
   $view = new view;
   $view->name = 'documents';
-  $view->description = 'Default views for Document content type listings';
+  $view->description = 'Default views for Document listings.';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Documents';
