@@ -12,7 +12,7 @@ function datapublic_documents_views_default_views() {
 
   $view = new view;
   $view->name = 'documents';
-  $view->description = '';
+  $view->description = 'Default views for Document content type listings';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Documents';
@@ -110,6 +110,7 @@ function datapublic_documents_views_default_views() {
   $handler->display->display_options['fields']['timestamp']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['timestamp']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['timestamp']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['timestamp']['element_class'] = 'subtitle';
   $handler->display->display_options['fields']['timestamp']['element_label_colon'] = 0;
   $handler->display->display_options['fields']['timestamp']['element_default_classes'] = 0;
   $handler->display->display_options['fields']['timestamp']['hide_empty'] = 0;
@@ -258,6 +259,7 @@ function datapublic_documents_views_default_views() {
   $handler->display->display_options['fields']['timestamp']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['timestamp']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['timestamp']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['timestamp']['element_class'] = 'subtitle';
   $handler->display->display_options['fields']['timestamp']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['timestamp']['element_default_classes'] = 0;
   $handler->display->display_options['fields']['timestamp']['hide_empty'] = 0;
