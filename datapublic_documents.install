@@ -1,0 +1,18 @@
+<?php
+/**
+ * Implements hook_install()
+ */
+
+function datapublic_documents_install() {
+  /** 
+   * Exportables is not yet implemented in the Alpha1 version of custom_breadcrumbs
+   * So we're going to write directly to the database on install
+   **/
+  if (function_exists('custom_breadcrumbs_save_breadcrumb')) {    
+    $breadcrumb->paths = array('resources','resources/documents','<none>');
+    $breadcrumb->titles = array('Resources','Documents','[node:title]');
+    $breadcrumb->node_type = 'document';
+    $breadcrumb->visibility_php = NULL;
+    custom_breadcrumbs_save_breadcrumb($breadcrumb);
+  }
+}
