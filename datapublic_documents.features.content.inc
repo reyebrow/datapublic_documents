@@ -11,7 +11,7 @@ function datapublic_documents_content_defaults() {
   $content = array();
 
   $content['document_page'] = (object) array(
-    'exported_path' => 'resources/documents',
+    'exported_path' => 'documents',
     'link' => array(
       'menu_name' => 'main-menu',
       'link_path' => 'node-name/document_page',
