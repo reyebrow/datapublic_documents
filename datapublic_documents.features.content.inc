@@ -21,7 +21,6 @@ function datapublic_documents_content_defaults() {
         'attributes' => array(
           'title' => 'Documents',
         ),
-        'langcode' => 'en',
       ),
       'module' => 'menu',
       'hidden' => '0',
@@ -54,6 +53,23 @@ function datapublic_documents_content_defaults() {
         ),
       ),
     ),
+    'field_page_loc_geocode' => array(
+      'und' => array(
+        0 => array(
+          'wkt' => 'POINT (-119.4179324 36.778261)',
+          'geo_type' => 'point',
+          'lat' => '36.7783',
+          'lon' => '-119.418',
+          'left' => '-119.418',
+          'top' => '36.7783',
+          'right' => '-119.418',
+          'bottom' => '36.7783',
+          'srid' => NULL,
+          'accuracy' => NULL,
+          'source' => NULL,
+        ),
+      ),
+    ),
     'field_page_location' => array(
       'und' => array(
         0 => array(
@@ -71,23 +87,6 @@ function datapublic_documents_content_defaults() {
           'first_name' => NULL,
           'last_name' => NULL,
           'data' => NULL,
-        ),
-      ),
-    ),
-    'field_page_loc_geocode' => array(
-      'und' => array(
-        0 => array(
-          'wkt' => 'POINT (-119.4179324 36.778261)',
-          'geo_type' => 'point',
-          'lat' => '36.7783',
-          'lon' => '-119.418',
-          'left' => '-119.418',
-          'top' => '36.7783',
-          'right' => '-119.418',
-          'bottom' => '36.7783',
-          'srid' => NULL,
-          'accuracy' => NULL,
-          'source' => NULL,
         ),
       ),
     ),
