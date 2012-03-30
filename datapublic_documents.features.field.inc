@@ -55,7 +55,7 @@ function datapublic_documents_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'trim_length' => 600,
+            'trim_length' => '600',
           ),
           'type' => 'text_summary_or_trimmed',
           'weight' => 0,
@@ -66,15 +66,15 @@ function datapublic_documents_field_default_fields() {
       'label' => 'Body',
       'required' => FALSE,
       'settings' => array(
-        'display_summary' => TRUE,
-        'text_processing' => 1,
+        'display_summary' => 'TRUE',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'module' => 'text',
         'settings' => array(
-          'rows' => 20,
-          'summary_rows' => 5,
+          'rows' => '20',
+          'summary_rows' => '5',
         ),
         'type' => 'text_textarea_with_summary',
         'weight' => '1',
@@ -105,8 +105,8 @@ function datapublic_documents_field_default_fields() {
       ),
       'module' => 'file',
       'settings' => array(
-        'display_default' => 1,
-        'display_field' => 1,
+        'display_default' => '1',
+        'display_field' => '1',
         'uri_scheme' => 'public',
       ),
       'translatable' => '0',
@@ -134,16 +134,16 @@ function datapublic_documents_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_document_attachment',
       'label' => 'Attachment',
-      'required' => 1,
+      'required' => '1',
       'settings' => array(
-        'description_field' => 1,
+        'description_field' => '1',
         'file_directory' => 'documents/files',
         'file_extensions' => 'txt pdf doc docx xls csv zip odt ods',
         'max_filesize' => '',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'active' => 1,
+        'active' => '1',
         'module' => 'file',
         'settings' => array(
           'progress_indicator' => 'throbber',
@@ -220,7 +220,7 @@ function datapublic_documents_field_default_fields() {
         'module' => 'taxonomy',
         'settings' => array(
           'autocomplete_path' => 'taxonomy/autocomplete',
-          'size' => 60,
+          'size' => '60',
         ),
         'type' => 'taxonomy_autocomplete',
         'weight' => '2',
