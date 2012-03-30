@@ -12,25 +12,6 @@ function datapublic_documents_content_defaults() {
 
   $content['document_page'] = (object) array(
     'exported_path' => 'documents',
-    'link' => array(
-      'menu_name' => 'main-menu',
-      'link_path' => 'node-name/document_page',
-      'router_path' => 'node/%',
-      'link_title' => 'Documents',
-      'options' => array(
-        'attributes' => array(
-          'title' => 'Documents',
-        ),
-      ),
-      'module' => 'menu',
-      'hidden' => '0',
-      'external' => '0',
-      'has_children' => '0',
-      'expanded' => '0',
-      'weight' => '-50',
-      'parent_path' => 'node-name/resources_page',
-      'identifier' => 'main-menu:node-name/document_page',
-    ),
     'title' => 'Documents',
     'status' => '1',
     'promote' => '0',
